@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:newsapp/src/pages/tabs_page.dart';
+import 'package:newsapp/src/theme/theme.dart' as themes;
 
 void main() => runApp(MyApp());
 
@@ -6,17 +8,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      title: 'News',
+      initialRoute: 'tabs',
+      routes: {
+        'tabs': (c) => TabsPage(),
+      },
+      theme: themes.dark,
     );
   }
 }
