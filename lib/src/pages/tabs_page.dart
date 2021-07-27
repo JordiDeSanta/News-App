@@ -1,27 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class TabsPage extends StatelessWidget {
-  const TabsPage({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => new _NavigationModel(),
+      child: Scaffold(
+        body: _Pages(),
+        bottomNavigationBar: _Navigation(),
+      ),
+    );
+  }
+}
+
+class _Navigation extends StatelessWidget {
+  const _Navigation({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.light.copyWith(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: ThemeData.dark().scaffoldBackgroundColor,
-        systemNavigationBarDividerColor:
-            ThemeData.dark().scaffoldBackgroundColor,
-      ),
-    );
+    final navigationModel = Provider.of<_NavigationModel>(context);
 
-    return Scaffold(
-        body: PageView(
-      physics: BouncingScrollPhysics(),
+    return BottomNavigationBar(
+      currentIndex: navigationModel.actualPage,
+      onTap: (i) => navigationModel.actualPage = i,
+      items: [
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'For You'),
+        BottomNavigationBarItem(icon: Icon(Icons.public), label: 'Headers'),
+      ],
+    );
+  }
+}
+
+class _Pages extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final navigationModel = Provider.of<_NavigationModel>(context);
+
+    return PageView(
+      controller: navigationModel.pageController,
+      physics: NeverScrollableScrollPhysics(),
+      onPageChanged: (p) => navigationModel.actualPage = p,
       children: [
         Container(color: Colors.blue),
         Container(color: Colors.brown),
       ],
-    ));
+    );
+  }
+}
+
+class _NavigationModel with ChangeNotifier {
+  int _actualPage = 0;
+  PageController _pageController = new PageController();
+
+  PageController get pageController => _pageController;
+
+  int get actualPage => this._actualPage;
+  set actualPage(int value) {
+    this._actualPage = value;
+    this._pageController.animateToPage(value,
+        duration: Duration(milliseconds: 250), curve: Curves.bounceInOut);
+    notifyListeners();
   }
 }
