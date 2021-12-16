@@ -13,15 +13,31 @@ class New extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.grey),
+          backgroundColor: MaterialStateProperty.all(Colors.black26),
           elevation: MaterialStateProperty.all(0),
           shape: MaterialStateProperty.all(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
         ),
         child: Column(
           children: [
-            Text(article!.title!),
-            Image.network(article!.urlToImage!),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                article!.title!,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Theme.of(context).colorScheme.secondary,
+                ),
+              ),
+            ),
+            if (article!.urlToImage != null)
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                child: Image.network(
+                  article!.urlToImage!,
+                  fit: BoxFit.contain,
+                ),
+              ),
           ],
         ),
       ),
