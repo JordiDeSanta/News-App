@@ -30,14 +30,17 @@ class New extends StatelessWidget {
                 ),
               ),
             ),
-            if (article!.urlToImage != null)
-              ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-                child: Image.network(
-                  article!.urlToImage!,
-                  fit: BoxFit.contain,
-                ),
-              ),
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              child: (article!.urlToImage != null)
+                  ? FadeInImage(
+                      placeholder: AssetImage("assets/img/giphy.gif"),
+                      image: NetworkImage(
+                        article!.urlToImage!,
+                      ),
+                    )
+                  : Image.asset("assets/img/no-image.png"),
+            ),
           ],
         ),
       ),
