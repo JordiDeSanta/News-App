@@ -11,13 +11,13 @@ class NewsService with ChangeNotifier {
   List<Article> headlines = [];
 
   List<Category> categories = [
-    Category(FontAwesomeIcons.building, 'business', 'Business'),
-    Category(FontAwesomeIcons.building, 'entertainment', 'Entertainment'),
-    Category(FontAwesomeIcons.building, 'general', 'General'),
-    Category(FontAwesomeIcons.building, 'health', 'Health'),
-    Category(FontAwesomeIcons.building, 'science', 'Science'),
-    Category(FontAwesomeIcons.building, 'sports', 'Sports'),
-    Category(FontAwesomeIcons.building, 'technology', 'Technology'),
+    Category(FontAwesomeIcons.cashRegister, 'business', 'Business'),
+    Category(FontAwesomeIcons.tv, 'entertainment', 'Entertainment'),
+    Category(FontAwesomeIcons.gripLinesVertical, 'general', 'General'),
+    Category(FontAwesomeIcons.bookMedical, 'health', 'Health'),
+    Category(FontAwesomeIcons.atom, 'science', 'Science'),
+    Category(FontAwesomeIcons.footballBall, 'sports', 'Sports'),
+    Category(FontAwesomeIcons.phone, 'technology', 'Technology'),
   ];
 
   NewsService() {

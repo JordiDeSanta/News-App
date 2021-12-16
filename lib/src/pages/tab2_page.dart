@@ -34,7 +34,7 @@ class _CategoriesList extends StatelessWidget {
       itemCount: categories.length,
       itemBuilder: (BuildContext c, int i) {
         return Container(
-          padding: EdgeInsets.all(5),
+          padding: EdgeInsets.all(5.0),
           child: ElevatedButton(
             onPressed: () {},
             style: ButtonStyle(
@@ -47,12 +47,22 @@ class _CategoriesList extends StatelessWidget {
               ),
             ),
             child: Container(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                categories[i].t,
-                style: TextStyle(
-                  color: Theme.of(context).accentColor,
-                ),
+              padding: EdgeInsets.all(6.0),
+              child: Row(
+                children: [
+                  Icon(
+                    categories[i].icon,
+                    color: Theme.of(context).accentColor,
+                    size: 20,
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    categories[i].t,
+                    style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
