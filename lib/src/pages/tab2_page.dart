@@ -10,7 +10,13 @@ class Tab2Page extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Column(
-          children: [Expanded(child: _CategoriesList())],
+          children: [
+            Container(
+              width: double.infinity,
+              height: 50,
+              child: _CategoriesList(),
+            )
+          ],
         ),
       ),
     );
@@ -28,11 +34,26 @@ class _CategoriesList extends StatelessWidget {
       itemCount: categories.length,
       itemBuilder: (BuildContext c, int i) {
         return Container(
-          padding: EdgeInsets.all(8.0),
-          child: Text(
-            categories[i].t,
-            style: TextStyle(
-              color: Theme.of(context).accentColor,
+          padding: EdgeInsets.all(5),
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.black26),
+              elevation: MaterialStateProperty.all(0),
+              shape: MaterialStateProperty.all(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            child: Container(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                categories[i].t,
+                style: TextStyle(
+                  color: Theme.of(context).accentColor,
+                ),
+              ),
             ),
           ),
         );
