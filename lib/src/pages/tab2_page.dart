@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/src/models/category_model.dart';
 import 'package:newsapp/src/services/news_service.dart';
+import 'package:newsapp/src/widgets/news_list.dart';
 import 'package:provider/provider.dart';
 
 class Tab2Page extends StatelessWidget {
-  const Tab2Page({Key? key}) : super(key: key);
+  Tab2Page({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final newsService = Provider.of<NewsService>(context);
+
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -16,7 +19,8 @@ class Tab2Page extends StatelessWidget {
               width: double.infinity,
               height: 50,
               child: _CategoriesList(),
-            )
+            ),
+            Expanded(child: NewsList(newsService.getArticlesOfCategory)),
           ],
         ),
       ),
