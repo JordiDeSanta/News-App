@@ -50,6 +50,8 @@ class _CategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final newsService = Provider.of<NewsService>(context);
+
     return ElevatedButton(
       onPressed: () {
         final newsService = Provider.of<NewsService>(context, listen: false);
@@ -70,14 +72,18 @@ class _CategoryButton extends StatelessWidget {
           children: [
             Icon(
               category.icon,
-              color: Theme.of(context).accentColor,
+              color: (newsService.selectedCategory == this.category.name)
+                  ? Theme.of(context).accentColor
+                  : Colors.grey,
               size: 20,
             ),
             SizedBox(width: 8),
             Text(
               category.t,
               style: TextStyle(
-                color: Theme.of(context).accentColor,
+                color: (newsService.selectedCategory == this.category.name)
+                    ? Theme.of(context).accentColor
+                    : Colors.grey,
               ),
             ),
           ],
